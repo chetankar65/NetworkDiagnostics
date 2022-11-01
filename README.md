@@ -30,3 +30,4 @@ In config.json,
 TCP = 0 and UDP = 1
 
 [Logging example](https://user-images.githubusercontent.com/26086224/199232311-3d9cf358-0e00-4e6a-bd7d-aad74e472265.png)
+![Program results](https://user-images.githubusercontent.com/26086224/199235475-46b7a780-4dd1-48f0-92a4-24f2b268a26f.png)
