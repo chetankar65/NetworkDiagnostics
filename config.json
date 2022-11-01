@@ -1,0 +1,41 @@
+{
+    "LTE": 
+    {
+        "ports": 
+        [
+            ["142.250.193.110", "443", 0],
+            ["www.google.com", "67", 1],
+            ["www.google.com", "80", 0]
+        ],
+
+        "urls":
+        [
+            "www.dsadasd.com",
+            "www.asas.com",
+            "www.websitecomeonethisaintaweb.com"
+        ],
+
+        "tunnels":[1]
+    },
+    
+
+    "WiFi":
+    {
+        "ports": 
+        [
+            ["www.google.com", "443", 0],
+            ["www.google.com", "67", 1],
+            ["www.google.com", "80", 1]
+        ],
+
+        "urls":
+        [
+            "https://www.google.com",
+            "http://asas.com",
+            "https://websitecomeonethisaintaweb.com"
+        ],
+
+        "tunnels":[1]
+    }
+}
+

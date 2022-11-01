@@ -1,0 +1,34 @@
+INFO:root:Basic connectivity:
+INFO:root:Local IP | Gatewat
+DEBUG:root:192.168.68.101 | 192.168.68.1
+INFO:root:Public IP:
+DEBUG:root:Your Public IP is: 117.254.35.245
+INFO:root:Nameservers and IP Address:
+DEBUG:root:google.com | ns4.google.com.
+DEBUG:root:google.com | ns3.google.com.
+DEBUG:root:google.com | ns2.google.com.
+DEBUG:root:google.com | ns1.google.com.
+DEBUG:root:google.com | ns1.google.com.
+INFO:root:Websocket connectivity tests:
+DEBUG:root:Connection established.
+DEBUG:root:Message sent.
+DEBUG:root:Message received.
+INFO:root:WiFi/LTE Tests:
+DEBUG:root:142.250.193.110:443 - Listening to TCP Signals
+DEBUG:root:142.250.193.110:443 - Listening to UDP Signals
+ERROR:root:www.google.com:67 - Not listening to TCP Signals
+DEBUG:root:www.google.com:67 - Listening to UDP Signals
+DEBUG:root:www.google.com:80 - Listening to TCP Signals
+DEBUG:root:www.google.com:80 - Listening to UDP Signals
+ERROR:root:www.dsadasd.com - Not accessible.
+ERROR:root:www.asas.com - Not accessible.
+ERROR:root:www.websitecomeonethisaintaweb.com - Not accessible.
+DEBUG:root:www.google.com:443 - Listening to TCP Signals
+DEBUG:root:www.google.com:443 - Listening to UDP Signals
+ERROR:root:www.google.com:67 - Not listening to TCP Signals
+DEBUG:root:www.google.com:67 - Listening to UDP Signals
+DEBUG:root:www.google.com:80 - Listening to TCP Signals
+DEBUG:root:www.google.com:80 - Listening to UDP Signals
+DEBUG:root:https://www.google.com - Accessible.
+DEBUG:root:http://asas.com - Accessible.
+ERROR:root:https://websitecomeonethisaintaweb.com - Not accessible.
