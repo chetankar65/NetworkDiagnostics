@@ -92,6 +92,8 @@ print("WiFi/LTE:")
 print("\n")
 
 file = "config.json"
+TCP = 0
+UDP = 1
 # Validating a config json file
 try:
     f = open(file)
@@ -100,19 +102,21 @@ try:
     wifi = data["WiFi"]
     print('LTE:')
     for port in lte['ports']:
-        if (port_scanning.check_for_tcp(port[0], port[1])):
-            print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to TCP Signals{bcolors.ENDC}")
-            logging.debug(f"{port[0]}:{port[1]} - Listening to TCP Signals")
-        else:
-            print(f"{bcolors.FAIL}{port[0]}:{port[1]} - Not listening to TCP Signals {bcolors.ENDC}")
-            logging.error(f"{port[0]}:{port[1]} - Not listening to TCP Signals")
+        if (port[2] == TCP):
+            if (port_scanning.check_for_tcp(port[0], port[1])):
+                print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to TCP Signals{bcolors.ENDC}")
+                logging.debug(f"{port[0]}:{port[1]} - Listening to TCP Signals")
+            else:
+                print(f"{bcolors.FAIL}{port[0]}:{port[1]} - Not listening to TCP Signals {bcolors.ENDC}")
+                logging.error(f"{port[0]}:{port[1]} - Not listening to TCP Signals")
 
-        if (port_scanning.check_for_udp(port[0], port[1])):
-            print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to UDP Signals{bcolors.ENDC}")
-            logging.debug(f"{port[0]}:{port[1]} - Listening to UDP Signals")
-        else:
-            print(f"{bcolors.FAIL}{port[0]}:{port[1]} - Not listening to UDP Signals{bcolors.ENDC}")
-            logging.error(f"{port[0]}:{port[1]} - Not listening to UDP Signals")
+        if (port[2] == UDP):
+            if (port_scanning.check_for_udp(port[0], port[1])):
+                print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to UDP Signals{bcolors.ENDC}")
+                logging.debug(f"{port[0]}:{port[1]} - Listening to UDP Signals")
+            else:
+                print(f"{bcolors.FAIL}{port[0]}:{port[1]} - Not listening to UDP Signals{bcolors.ENDC}")
+                logging.error(f"{port[0]}:{port[1]} - Not listening to UDP Signals")
         
     print("\n")
 
@@ -129,19 +133,21 @@ try:
 
     print("WIFI:")
     for port in wifi['ports']:
-        if (port_scanning.check_for_tcp(port[0], port[1])):
-            print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to TCP Signals {bcolors.ENDC}")
-            logging.debug(f"{port[0]}:{port[1]} - Listening to TCP Signals")
-        else:
-            print(f"{bcolors.FAIL} {port[0]}:{port[1]} - Not listening to TCP Signals {bcolors.ENDC}")
-            logging.error(f"{port[0]}:{port[1]} - Not listening to TCP Signals")
+        if (port[2] == TCP):
+            if (port_scanning.check_for_tcp(port[0], port[1])):
+                print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to TCP Signals {bcolors.ENDC}")
+                logging.debug(f"{port[0]}:{port[1]} - Listening to TCP Signals")
+            else:
+                print(f"{bcolors.FAIL} {port[0]}:{port[1]} - Not listening to TCP Signals {bcolors.ENDC}")
+                logging.error(f"{port[0]}:{port[1]} - Not listening to TCP Signals")
 
-        if (port_scanning.check_for_udp(port[0], port[1])):
-            print(f"{bcolors.OKGREEN} {port[0]}:{port[1]} - Listening to UDP Signals {bcolors.ENDC}")
-            logging.debug(f"{port[0]}:{port[1]} - Listening to UDP Signals")
-        else:
-            print(f"{bcolors.FAIL} {port[0]}:{port[1]} - Not listening to UDP Signals {bcolors.ENDC}")
-            logging.error(f"{port[0]}:{port[1]} - Not listening to UDP Signals")
+        if (port[2] == UDP):
+            if (port_scanning.check_for_udp(port[0], port[1])):
+                print(f"{bcolors.OKGREEN} {port[0]}:{port[1]} - Listening to UDP Signals {bcolors.ENDC}")
+                logging.debug(f"{port[0]}:{port[1]} - Listening to UDP Signals")
+            else:
+                print(f"{bcolors.FAIL} {port[0]}:{port[1]} - Not listening to UDP Signals {bcolors.ENDC}")
+                logging.error(f"{port[0]}:{port[1]} - Not listening to UDP Signals")
 
         
     print("\n")

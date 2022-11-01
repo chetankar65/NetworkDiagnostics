@@ -26,5 +26,7 @@ a particular domain (like google.com). Meant to check whether device can access 
 6. Logs all of the info
 7. All tests successful.!
 
+In config.json,
+TCP = 0 and UDP = 1
 
 [Logging example](https://user-images.githubusercontent.com/26086224/199232311-3d9cf358-0e00-4e6a-bd7d-aad74e472265.png)
