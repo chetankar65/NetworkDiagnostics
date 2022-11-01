@@ -1,5 +1,16 @@
 # NetworkDiagnostics
 
+Run using  - python3 app.py
+
+Requirements (python modules):
+- JSON
+- logging
+
+- Python dns module
+- Scapy
+- Socket/ urllib
+- websocket
+
 Simple network diagnostics tool written in Python with the help of scapy module. Can be used for setting up WiFi Routers/ access points etc.
 
 Performs the following tests -
