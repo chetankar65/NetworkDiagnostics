@@ -3,6 +3,19 @@ import port_scanning, dnsLookup, network, websockets
 import json
 import logging
 
+#### adding color to python text
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+##############
+
 logging.basicConfig(filename = 'log.log', level = logging.DEBUG)
 DOMAIN = "google.com"
 ### IP, Gateway check
@@ -21,9 +34,9 @@ print("\n")
 logging.info("Public IP:")
 if (network.check_public_ip() != 0):
     print('Your Public IP is: ', network.check_public_ip())
-    logging.debug(f'Your Public IP is: {network.check_public_ip()}')
+    logging.debug(f'Your Public IP is: {bcolors.OKGREEN} {network.check_public_ip()} {bcolors.ENDC}')
 else:
-    print("Not connected to the internet.")
+    print(f"{bcolors.FAIL}Not connected to the internet.{bcolors.ENDC}")
     logging.error("Not connected to the internet.")
     exit()
 print("\n")
@@ -33,18 +46,18 @@ print("Basic connectivity 2: Nameservers and IP Addresses")
 print("\n")
 if (dnsLookup.get_nameservers(DOMAIN) != False):
     for val in dnsLookup.get_nameservers(DOMAIN):
-        print(f"{val[0]} | {val[1]}")
+        print(f"{bcolors.OKCYAN} {val[0]} | {val[1]} {bcolors.ENDC}")
         logging.debug(f"{val[0]} | {val[1]}")
     print("\n")
 
     if (dnsLookup.get_ip_address(DOMAIN) != False):
-        print(f"{val[0]} | {val[1]}")
+        print(f"{bcolors.OKCYAN} {val[0]} | {val[1]} {bcolors.ENDC} ")
         logging.debug(f"{val[0]} | {val[1]}")
     else:
-        print("Domain doesn't exist.")
+        print(f"{bcolors.FAIL}Domain doesn't exist.{bcolors.ENDC}")
         logging.error("Domain doesn't exist.")
 else:
-    print("Nameservers don't exist.")
+    print(f"{bcolors.FAIL}Nameservers don't exist. {bcolors.ENDC}")
     logging.error("Nameservers don't exist.")
 
 print("\n")
@@ -52,24 +65,24 @@ print("\n")
 logging.info("Websocket connectivity tests:")
 print("Basic connectivity 3: Websocket connectivity test\n")
 if (websockets.websocket_test_connection()[0] == True):
-    print("Connection Established.")
+    print(f"{bcolors.OKGREEN}Connection Established.{bcolors.ENDC}")
     logging.debug("Connection established.")
 else:
-    print("Connection Failed.")
+    print(f"{bcolors.FAIL}Connection Failed.{bcolors.ENDC}")
     logging.error("Connection failed.")
 
 if (websockets.websocket_test_connection()[1] == True):
-    print("Message sent.")
+    print(f"{bcolors.OKGREEN}Message sent.{bcolors.ENDC}")
     logging.debug("Message sent.")
 else:
-    print("Message not sent.")
+    print(f"{bcolors.FAIL}Message not sent.{bcolors.ENDC}")
     logging.error("Message not sent.")
 
 if (websockets.websocket_test_connection()[2] == True):
-    print("Message received.")
+    print(f"{bcolors.OKGREEN}Message received.{bcolors.ENDC}")
     logging.debug("Message received.")
 else:
-    print("Message not received.")
+    print(f"{bcolors.FAIL}Message not received.{bcolors.ENDC}")
     logging.error("Message not received.")
 
 print("\n")
@@ -88,17 +101,17 @@ try:
     print('LTE:')
     for port in lte['ports']:
         if (port_scanning.check_for_tcp(port[0], port[1])):
-            print(f"{port[0]}:{port[1]} - Listening to TCP Signals")
+            print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to TCP Signals{bcolors.ENDC}")
             logging.debug(f"{port[0]}:{port[1]} - Listening to TCP Signals")
         else:
-            print(f"{port[0]}:{port[1]} - Not listening to TCP Signals")
+            print(f"{bcolors.FAIL}{port[0]}:{port[1]} - Not listening to TCP Signals {bcolors.ENDC}")
             logging.error(f"{port[0]}:{port[1]} - Not listening to TCP Signals")
 
         if (port_scanning.check_for_udp(port[0], port[1])):
-            print(f"{port[0]}:{port[1]} - Listening to UDP Signals")
+            print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to UDP Signals{bcolors.ENDC}")
             logging.debug(f"{port[0]}:{port[1]} - Listening to UDP Signals")
         else:
-            print(f"{port[0]}:{port[1]} - Not listening to UDP Signals")
+            print(f"{bcolors.FAIL}{port[0]}:{port[1]} - Not listening to UDP Signals{bcolors.ENDC}")
             logging.error(f"{port[0]}:{port[1]} - Not listening to UDP Signals")
         
     print("\n")
@@ -106,10 +119,10 @@ try:
     for url in lte['urls']:
         #print(check_wget(url))
         if (port_scanning.check_wget(url)):
-            print(f"{url} - Accessible.")
+            print(f"{bcolors.OKGREEN}{url} - Accessible.{bcolors.ENDC}")
             logging.debug(f"{url} - Accessible.")
         else:
-            print(f"{url} - Not accessible.")
+            print(f"{bcolors.FAIL}{url} - Not accessible.{bcolors.ENDC}")
             logging.error(f"{url} - Not accessible.")
 
     print("\n")
@@ -117,27 +130,27 @@ try:
     print("WIFI:")
     for port in wifi['ports']:
         if (port_scanning.check_for_tcp(port[0], port[1])):
-            print(f"{port[0]}:{port[1]} - Listening to TCP Signals")
+            print(f"{bcolors.OKGREEN}{port[0]}:{port[1]} - Listening to TCP Signals {bcolors.ENDC}")
             logging.debug(f"{port[0]}:{port[1]} - Listening to TCP Signals")
         else:
-            print(f"{port[0]}:{port[1]} - Not listening to TCP Signals")
+            print(f"{bcolors.FAIL} {port[0]}:{port[1]} - Not listening to TCP Signals {bcolors.ENDC}")
             logging.error(f"{port[0]}:{port[1]} - Not listening to TCP Signals")
 
         if (port_scanning.check_for_udp(port[0], port[1])):
-            print(f"{port[0]}:{port[1]} - Listening to UDP Signals")
+            print(f"{bcolors.OKGREEN} {port[0]}:{port[1]} - Listening to UDP Signals {bcolors.ENDC}")
             logging.debug(f"{port[0]}:{port[1]} - Listening to UDP Signals")
         else:
-            print(f"{port[0]}:{port[1]} - Not listening to UDP Signals")
+            print(f"{bcolors.FAIL} {port[0]}:{port[1]} - Not listening to UDP Signals {bcolors.ENDC}")
             logging.error(f"{port[0]}:{port[1]} - Not listening to UDP Signals")
 
         
     print("\n")
     for url in wifi['urls']:
         if (port_scanning.check_wget(url)):
-            print(f"{url} - Accessible.")
+            print(f"{bcolors.OKGREEN}{url} - Accessible.{bcolors.ENDC}")
             logging.debug(f"{url} - Accessible.")
         else:
-            print(f"{url} - Not accessible.")
+            print(f"{bcolors.FAIL} {url} - Not accessible. {bcolors.ENDC}")
             logging.error(f"{url} - Not accessible.")
         # iterating through ports and urls and running tests
 except ValueError:
